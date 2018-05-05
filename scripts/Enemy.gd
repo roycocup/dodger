@@ -1,12 +1,14 @@
-extends Node2D
+extends RigidBody2D
 
-var pos = Vector2(-100, -100)
-
+export (int) var MIN_SPEED # minimum speed range
+export (int) var MAX_SPEED # maximum speed range
 
 func _ready():
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	pass
+
+
+func _on_Visibility_screen_exited():
+    queue_free()

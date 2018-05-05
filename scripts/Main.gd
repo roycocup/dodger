@@ -4,50 +4,36 @@ extends Node2D
 # Class Member Variables #
 ##########################
 const ENEMY = preload("res://scenes/Enemy.tscn")
-const DODGER = preload("res://scenes/Dodger.tscn")
 const MAX_ONSCREEN_ENEMIES = 4
 
-onready var player_layer = self.get_node("Player")
-onready var enemies_layer = self.get_node("Enemies")
+var score
+
+func _ready():
+	call_deferred("new_game")
+
+func _process(delta):
+	if_quit()
 
 func if_quit():
 	if(Input.is_key_pressed(KEY_ESCAPE)):
 		get_tree().quit()
-	pass
+
+func game_over():
+	$ScoreTimer.stop()
+	$EnemyTimer.stop()
+
+func new_game():
+	score = 0
+	$EnemyTimer.start()
 	
-func spawn_player():
-	var dodger = DODGER.instance(true)
-	player_layer.get_transform().x = 0
-	player_layer.get_transform().y = 0
-	player_layer.add_child(dodger)
-	pass
-	
-func spawn_enemies():
-    var children = enemies_layer.get_child_count()
-    if children < 2:
-        var to_spawn = MAX_ONSCREEN_ENEMIES-children
-        for n in range(to_spawn):
-            var enemy = ENEMY.instance(true)
-            var posx = floor(rand_range(-45,46))
-            var posy = floor(rand_range(-11,12))
-            enemy.set_pos(Vector2(posx,posy))
+func _on_StartTimer_timeout():
+	pass # replace with function body
 
-            enemies_layer.add_child(enemy)
-            pass
-    pass
+func _on_ScoreTimer_timeout():
+	pass # replace with function body
 
-func _ready():
-	randomize(true)
-	set_process(true)
-	pass
-
-func _process(delta):
-	if_quit()
-	#spawn_player()
-	#spawn_enemies()
-	pass
-	
-
-
-
-
+func _on_EnemyTimer_timeout():
+	var enemy = ENEMY.instance()
+	$Enemies.add_child(enemy)
+	enemy.position = Vector2(randi() % 400 + 1, 0)
+	enemy.set_linear_velocity(Vector2(0,100))
