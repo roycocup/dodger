@@ -1,27 +1,28 @@
 extends KinematicBody2D
 
-const FLOOR = Vector2(0, -1)
-const SPEED = 200
+const UP = Vector2(0, -1)
 
-var mMovement = Vector2(0,0)
+export var speed = 200
+var vel = Vector2(0,0)
+
+var screensize  # size of the game window
 
 
 func _ready():
-	
-	pass
+	position = vel
+	screensize = get_viewport_rect().size
 
 func _process(delta):
 	if Input.is_action_pressed("ui_up"):
-		mMovement.y = -SPEED
+		vel.y = -speed
 	elif Input.is_action_pressed("ui_down"):
-		mMovement.y = SPEED
+		vel.y = speed
 	elif Input.is_action_pressed("ui_left"):
-		mMovement.x = -SPEED
+		vel.x = -speed
 	elif Input.is_action_pressed("ui_right"):
-		mMovement.x = SPEED
-	else:
-		mMovement = Vector2(0, 0)
-	
-	move_and_collide(mMovement, FLOOR)
-	
-	pass
+		vel.x = speed
+	else: 
+		vel = Vector2(0, 0)
+		
+	move_and_slide(vel, UP)
+

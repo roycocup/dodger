@@ -7,8 +7,8 @@ const ENEMY = preload("res://scenes/Enemy.tscn")
 const DODGER = preload("res://scenes/Dodger.tscn")
 const MAX_ONSCREEN_ENEMIES = 4
 
-onready var player_layer = self.get_node("Player_Layer")
-onready var enemies_layer = self.get_node("Enemies_Layer")
+onready var player_layer = self.get_node("Player")
+onready var enemies_layer = self.get_node("Enemies")
 
 func if_quit():
 	if(Input.is_key_pressed(KEY_ESCAPE)):
