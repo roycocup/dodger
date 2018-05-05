@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-const UP = Vector2(0, -1)
+const FLOOR = Vector2(0, -1)
+const SPEED = 200
 
 var mMovement = Vector2(0,0)
 
@@ -11,16 +12,16 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("ui_up"):
-		mMovement.y = -100
+		mMovement.y = -SPEED
 	elif Input.is_action_pressed("ui_down"):
-		mMovement.y = 100
+		mMovement.y = SPEED
 	elif Input.is_action_pressed("ui_left"):
-		mMovement.x = -100
+		mMovement.x = -SPEED
 	elif Input.is_action_pressed("ui_right"):
-		mMovement.x = 100
+		mMovement.x = SPEED
 	else:
 		mMovement = Vector2(0, 0)
 	
-	move_and_slide(mMovement)
+	move_and_collide(mMovement, FLOOR)
 	
 	pass
