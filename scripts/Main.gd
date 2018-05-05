@@ -35,5 +35,6 @@ func _on_ScoreTimer_timeout():
 func _on_EnemyTimer_timeout():
 	var enemy = ENEMY.instance()
 	$Enemies.add_child(enemy)
-	enemy.position = Vector2(randi() % 400 + 1, 0)
+	var spawPos = $EnemySpawnPath.curve.interpolate(0, (randi() % 99+1) / 10)
+	enemy.position = Vector2(spawPos)
 	enemy.set_linear_velocity(Vector2(0,100))

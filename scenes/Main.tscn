@@ -7,7 +7,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -532.407, 94.2194, 0, 0, 0, 0, -5.32535, 87.4647 )
+"points": PoolVector2Array( 0, 0, 0, 0, -486.868, 85.2858, 0, 0, 0, 0, 183.152, 70.0333 )
 }
 
 [node name="Stage" type="Node2D" index="0"]
