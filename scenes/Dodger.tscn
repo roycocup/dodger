@@ -7,7 +7,7 @@
 [ext_resource path="res://sprites/Dodger3.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Dodger4.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -26,7 +26,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Dodger" type="KinematicBody2D" index="0"]
+[node name="Dodger" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -48,7 +48,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
