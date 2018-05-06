@@ -1,7 +1,7 @@
 extends Node2D
 
-const ENEMY = preload("res://scenes/Enemy.tscn")
-const MAX_ONSCREEN_ENEMIES = 4
+const WINDOW = Vector2(1024, 600)
+export (PackedScene) var enemy
 var score
 
 
@@ -21,17 +21,15 @@ func new_game():
 	$EnemyTimer.start()
 	$ScoreTimer.stop()
 	
+func _on_EnemyTimer_timeout():
+	var e = enemy.instance()
+	$Enemies.add_child(e)
+	# var sign = (randi() % 2) == 0) ? 
+	var spawn_point = Vector2(randi() % WINDOW.x)
+	e.position = Vector2(spawn_point)
+	print(spawn_point)
+	e.set_linear_velocity(Vector2(0,100))
+
 func _on_StartTimer_timeout():
 	new_game()
-
-func _on_ScoreTimer_timeout():
 	pass # replace with function body
-
-func _on_EnemyTimer_timeout():
-	var enemy = ENEMY.instance()
-	$Enemies.add_child(enemy)
-	var num_points = $EnemySpawnPath.curve.get_point_count()
-	var point = $EnemySpawnPath.curve.get_point_position(randi() % num_points + 1)
-	print(point)
-	enemy.position = Vector2(point)
-	enemy.set_linear_velocity(Vector2(0,100))

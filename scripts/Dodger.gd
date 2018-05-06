@@ -3,7 +3,7 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 
 export var speed = 200
-var vel = Vector2(0,0)
+var vel = Vector2(500,500)
 
 var screensize  # size of the game window
 

@@ -1,25 +1,24 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Dodger.tscn" type="PackedScene" id=2]
-
-[sub_resource type="Curve2D" id=1]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -174.94, 318.008, 0, 0, 0, 0, -28.9525, 320.187, 0, 0, 0, 0, 29.8785, 322.366, 0, 0, 0, 0, 82.1728, 326.724, 0, 0, 0, 0, 134.467, 309.292, 0, 0, 0, 0, 210.729, 320.187, 0, 0, 0, 0, 276.097, 302.755, 0, 0, 0, 0, 339.286, 313.65, 0, 0, 0, 0, 447.468, 329.33, 0, 0, 0, 0, 528.853, 307.113, 0, 0, 0, 0, 539.747, 307.113, 0, 0, 0, 0, 635.62, 261.356, 0, 0, 0, 0, 759.819, 265.714, 0, 0, 0, 0, 781.608, 326.724, 0, 0, 0, 0, 833.902, 296.219, 0, 0, 0, 0, 910.165, 259.177, 0, 0, 0, 0, 897.091, 235.209, 0, 0, 0, 0, 799.039, 224.314, 0, 0, 0, 0, 626.904, 202.525, 0, 0, 0, 0, 557.179, 228.672, 0, 0, 0, 0, 389.401, 193.809, 0, 0, 0, 0, 339.286, 252.64, 0, 0, 0, 0, 199.835, 228.672, 0, 0, 0, 0, 188.94, 228.672, 0, 0, 0, 0, 62.5624, 239.567, 0, 0, 0, 0, -42.026, 217.777, 0, 0, 0, 0, -81.2467, 217.777, 0, 0, 0, 0, -155.33, 235.209, 0, 0, 0, 0, -194.551, 289.682, 0, 0, 0, 0, -174.94, 318.008 )
-}
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Dodger.tscn" type="PackedScene" id=3]
 
 [node name="Stage" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+enemy = ExtResource( 2 )
 
 [node name="Player" type="Node2D" parent="." index="0"]
 
 editor/display_folded = true
 _sections_unfolded = [ "Material", "Transform" ]
 
-[node name="Dodger" parent="Player" index="0" instance=ExtResource( 2 )]
+[node name="Dodger" parent="Player" index="0" instance=ExtResource( 3 )]
 
 [node name="Enemies" type="Node2D" parent="." index="1"]
 
@@ -40,25 +39,11 @@ autostart = false
 [node name="StartTimer" type="Timer" parent="." index="4"]
 
 process_mode = 1
-wait_time = 3.0
-one_shot = true
-autostart = true
-
-[node name="StartPosition" type="Position2D" parent="." index="5"]
-
-position = Vector2( 576.895, -44.8704 )
-scale = Vector2( 4.02033, 3.42779 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="EnemySpawnPath" type="Path2D" parent="." index="6"]
-
-position = Vector2( 267.803, 137.802 )
-scale = Vector2( 0.966469, -1.15763 )
-curve = SubResource( 1 )
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
-
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 
