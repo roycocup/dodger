@@ -33,3 +33,7 @@ func _on_EnemyTimer_timeout():
 func _on_StartTimer_timeout():
 	new_game()
 	pass # replace with function body
+
+func _on_start_game():
+	new_game()
+	print("triggered")
