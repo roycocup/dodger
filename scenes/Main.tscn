@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Dodger.tscn" type="PackedScene" id=3]
 
-[node name="Stage" type="Node2D"]
+[node name="Stage" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -41,7 +41,11 @@ autostart = false
 process_mode = 1
 wait_time = 1.0
 one_shot = false
-autostart = false
+autostart = true
+
+[node name="RigidBody2D" parent="." index="5" instance=ExtResource( 2 )]
+
+position = Vector2( 540.26, 413.463 )
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 

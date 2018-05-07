@@ -20,20 +20,17 @@ func new_game():
 	score = 0
 	$EnemyTimer.start()
 	$ScoreTimer.stop()
+
+func spawn_enemy():
+	var e = enemy.instance()
+	var x = randi() % int(WINDOW.x)
+	var spawn_point = Vector2(x , 0)
+	e.position = spawn_point
+	$Enemies.add_child(e)
+	e.set_linear_velocity(Vector2(0,100))
 	
 func _on_EnemyTimer_timeout():
-	var e = enemy.instance()
-	$Enemies.add_child(e)
-	# var sign = (randi() % 2) == 0) ? 
-	var spawn_point = Vector2(randi() % WINDOW.x)
-	e.position = Vector2(spawn_point)
-	print(spawn_point)
-	e.set_linear_velocity(Vector2(0,100))
+	spawn_enemy()
 
 func _on_StartTimer_timeout():
 	new_game()
-	pass # replace with function body
-
-func _on_start_game():
-	new_game()
-	print("triggered")
