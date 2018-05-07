@@ -4,6 +4,8 @@ const WINDOW = Vector2(1024, 600)
 export (PackedScene) var enemy
 var score
 
+func _ready():
+	pass
 
 func _process(delta):
 	if_quit()
@@ -13,13 +15,14 @@ func if_quit():
 		get_tree().quit()
 
 func game_over():
+	$Player.queue_free()
+	$Enemies.queue_free()
 	$ScoreTimer.stop()
 	$EnemyTimer.stop()
 
 func new_game():
 	score = 0
 	$EnemyTimer.start()
-	$ScoreTimer.stop()
 
 func spawn_enemy():
 	var e = enemy.instance()
@@ -34,3 +37,6 @@ func _on_EnemyTimer_timeout():
 
 func _on_StartTimer_timeout():
 	new_game()
+
+func _on_Dodger_Hit():
+	pass

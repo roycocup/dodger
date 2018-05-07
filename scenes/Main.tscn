@@ -15,7 +15,6 @@ enemy = ExtResource( 2 )
 
 [node name="Player" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Material", "Transform" ]
 
 [node name="Dodger" parent="Player" index="0" instance=ExtResource( 3 )]
@@ -42,10 +41,6 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = true
-
-[node name="RigidBody2D" parent="." index="5" instance=ExtResource( 2 )]
-
-position = Vector2( 540.26, 413.463 )
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 

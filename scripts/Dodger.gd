@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal dodger_hit
+
 const UP = Vector2(0, -1)
 
 export var speed = 200
@@ -26,3 +28,7 @@ func _process(delta):
 		
 	move_and_slide(vel, UP)
 
+
+func _on_hit():
+	emit_signal("dodger_hit")
+	pass
